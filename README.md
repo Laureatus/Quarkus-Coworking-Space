@@ -1,50 +1,56 @@
-# UeK-223_22-3216_LFa
+# coworking_space Project
 
-# Aufgabe
+This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
-## Die zu entwickelnde Prototyp soll aus einer Server- und Client-Applikation bestehen. Die Client-Applikation benutzt die Server-Applikation über eine HTTP API. Für den Prototyp sind folgende, menschliche Akteure vorgesehen:
+If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
-> Administrator
+## Running the application in dev mode
 
-> Mitglied
+You can run your application in dev mode that enables live coding using:
+```shell script
+./mvnw compile quarkus:dev
+```
 
-> Besucher (nicht authentifizierter Benutzer)
+> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
 
-## Folgende funktionalen Anwendungsfälle sollen mindestens im Prototypen implementiert werden:
+## Packaging and running the application
 
-> Als Besucher möchte ich mich mit meinem Vor- und Nachnamen, meiner E-Mail-Adresse und einem Passwort
-registrieren, damit ich die Rolle Mitglied bekommen kann.
+The application can be packaged using:
+```shell script
+./mvnw package
+```
+It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
+Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
 
-> Als Besucher möchte ich mich mit meiner E-Mail-Adresse und meinem Passwort anmelden, damit ich mich als
-Mitglied oder Administrator authentifizieren kann.
+The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
 
-> Als Mitglied möchte ich halbe und ganze Tage an bestimmten Daten im Coworking Space als Buchung anfragen,
-damit ich die Angebote des Coworking Space nutzen kann.
+If you want to build an _über-jar_, execute the following command:
+```shell script
+./mvnw package -Dquarkus.package.type=uber-jar
+```
 
-> Als Mitglied möchte ich den Status meiner Buchungen überprüfen, damit ich erfahre, ob meine Buchung
-bestätigt oder abgelehnt wurde.
+The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
 
-> Als Mitglied kann ich meine zukünftigen Buchungen stornieren, damit ich auf Veränderungen in meiner
-Terminplanung reagieren kann.
+## Creating a native executable
 
-> Als Administrator kann ich Mitglieder verwalten (erstellen, bearbeiten, löschen), damit ich die Mitglieder
-organisieren kann.
+You can create a native executable using: 
+```shell script
+./mvnw package -Pnative
+```
 
-> Als Administrator kann ich Buchungsanfragen akzeptieren und ablehnen, damit die Mitglieder das Angebot des
-Coworking Space nutzen können.
+Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
+```shell script
+./mvnw package -Pnative -Dquarkus.native.container-build=true
+```
 
-> Als Administrator kann ich Buchungen verwalten (erstellen, bearbeiten, löschen), damit ich die Buchungen
-organisieren kann.
+You can then execute your native executable with: `./target/coworking_space-1.0.0-SNAPSHOT-runner`
 
-## Folgende nicht-funktionale Anforderungen sollen mindestens im Prototypen umgesetzt werden:
+If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
-> Das Datenmodell erfüllt die erste, zweite und dritte Normalform nach der relationalen Entwurfstheorie.
+## Provided Code
 
-> Der erste Besucher bekommt nach der Registrierung die Rolle Administrator anstatt Mitglied.
+### RESTEasy Reactive
 
-> Die Authentifizierung erfolgt mittels JSON Web Token (JWT nach RFC 7519) über den HTTP Header
-'Authorization'.
+Easily start your Reactive RESTful Web Services
 
-> Das JWT läuft 24 Stunden nach der Ausstellung ab und verliert seine Gültigkeit.
-
-> Das JWT wird clientseitig während dessen Lebensdauer persistent aufbewahrt.
+[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
