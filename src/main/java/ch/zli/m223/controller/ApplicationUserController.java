@@ -5,9 +5,12 @@ import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -48,10 +51,8 @@ public class ApplicationUserController {
         return applicationUserService.createUser(applicationUser);
     }
 
-
     @POST
     @Path("/login")
-    @RolesAllowed({ "User", "Admin" })
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String login(ApplicationUser user) {
@@ -61,4 +62,25 @@ public class ApplicationUserController {
        }
         return "";
     }
+
+    @Path("/{id}")
+    @DELETE
+    @Operation(
+        summary = "Deletes a user.",
+        description = "Deletes a user by its id."
+    )
+    public void delete(@PathParam("id") Long id) {
+        applicationUserService.deleteUser(id);
+    }
+
+    @Path("/{id}")
+    @PUT
+    @Operation(
+        summary = "Updates a user.",
+        description = "Updates a user by its id."
+    )
+    public ApplicationUser update(@PathParam("id") Long id, ApplicationUser entry) {
+        return applicationUserService.updateUser(id, entry);
+    }
+
 }
