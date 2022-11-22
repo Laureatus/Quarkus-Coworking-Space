@@ -103,6 +103,14 @@ public class ApplicationUser {
         this.bookings = bookings;
     }
 
+    public Set<Material> getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Set<Material> material) {
+        this.material = material;
+    }
+
 
 
 }
