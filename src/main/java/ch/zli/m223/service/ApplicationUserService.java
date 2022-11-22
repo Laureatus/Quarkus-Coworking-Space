@@ -3,9 +3,9 @@ package ch.zli.m223.service;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-
-import com.oracle.svm.core.annotate.Inject;
+import javax.transaction.Transactional;
 
 import ch.zli.m223.model.ApplicationUser;
 
@@ -15,8 +15,13 @@ public class ApplicationUserService {
     EntityManager entityManager;
 
     public List<ApplicationUser> findAll() {
-        var query = entityManager.createQuery("FROM Entry", ApplicationUser.class);
+        var query = entityManager.createQuery("FROM ApplicationUser", ApplicationUser.class);
         return query.getResultList();
+    }
+
+    @Transactional
+    public ApplicationUser createUser(ApplicationUser applicationUser) {
+        return entityManager.merge(applicationUser);
     }
     
 }
