@@ -20,7 +20,7 @@ public class Coffee {
     @Schema(readOnly = true)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private LocalDateTime time;
 
     @ManyToOne(optional = false)
