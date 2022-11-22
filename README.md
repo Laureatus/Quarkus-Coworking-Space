@@ -54,3 +54,43 @@ If you want to learn more about building native executables, please consult http
 Easily start your Reactive RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+
+
+## Testdata
+
+The Testing Data is defined inside the resource folder in the file import.sql.
+
+The Table structure is the following:
+<p><br>
+
+### Table: applicationuser
+
+id | email | firstname | isAdmin | lastname | password |
+--- | --- | --- | --- |--- |--- |
+1 | test@gmail.com | lorin | true | fankhauser | password123
+2 | test2@gmail.com | Max | false | Mustermann | max123
+
+### Table booking
+id | bookeddate | halfday | wholeday | user_id |
+--- | --- | --- | --- | --- |
+1 | 2019-01-21T05:47:08.644 | true | false | 1 |
+2 | 2019-01-21T05:47:08.644 | false | true | 2 |
+
+### Table coffee
+
+id | time | user_id |
+--- | --- | --- |
+1 | 2019-01-21T05:47:08.644 | 1 |
+
+### Table lunch 
+
+id | name | supplier | user_id |
+--- | --- | --- | --- |
+1 | pizza | PizzaHut | 1 |
+
+### Table material 
+
+id | name | user_id |
+--- | --- | --- |
+1 | usb type C charger_1 | 1 |
