@@ -47,6 +47,11 @@ public class ApplicationUser {
     @Fetch(FetchMode.JOIN)
     private Set<Material> material;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    @Fetch(FetchMode.JOIN)
+    private Set<Coffee> coffee;
+
     public Long getId() {
         return id;
     }
