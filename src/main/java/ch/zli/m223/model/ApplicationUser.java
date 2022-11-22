@@ -116,6 +116,13 @@ public class ApplicationUser {
         this.material = material;
     }
 
+    public Set<Coffee> getCoffee() {
+        return coffee;
+    }
+
+    public void setCoffee(Set<Coffee> coffee) {
+        this.coffee = coffee;
+    }
 
 
 }
