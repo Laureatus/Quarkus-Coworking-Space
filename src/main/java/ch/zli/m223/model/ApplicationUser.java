@@ -42,6 +42,11 @@ public class ApplicationUser {
     @Fetch(FetchMode.JOIN)
     private Set<Booking> bookings;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    @Fetch(FetchMode.JOIN)
+    private Set<Material> material;
+
     public Long getId() {
         return id;
     }
