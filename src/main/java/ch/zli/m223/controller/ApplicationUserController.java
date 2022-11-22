@@ -65,6 +65,7 @@ public class ApplicationUserController {
 
     @Path("/{id}")
     @DELETE
+    @RolesAllowed({ "Admin" })
     @Operation(
         summary = "Deletes a user.",
         description = "Deletes a user by its id."
@@ -75,6 +76,7 @@ public class ApplicationUserController {
 
     @Path("/{id}")
     @PUT
+    @RolesAllowed({ "Admin" })
     @Operation(
         summary = "Updates a user.",
         description = "Updates a user by its id."
