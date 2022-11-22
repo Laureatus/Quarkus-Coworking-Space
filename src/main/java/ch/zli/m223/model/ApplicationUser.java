@@ -7,8 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class ApplicationUser {
@@ -32,11 +37,10 @@ public class ApplicationUser {
     @Column(nullable = false)
     private boolean isAdmin;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    @Fetch(FetchMode.JOIN)
     private Set<Booking> bookings;
-
-    private Set<Material> materials;
-
-    private Set<Coffee> coffee;
 
     public Long getId() {
         return id;
@@ -94,20 +98,6 @@ public class ApplicationUser {
         this.bookings = bookings;
     }
 
-    public Set<Material> getMaterials() {
-        return materials;
-    }
 
-    public void setMaterials(Set<Material> materials) {
-        this.materials = materials;
-    }
-
-    public Set<Coffee> getCoffee() {
-        return coffee;
-    }
-
-    public void setCoffee(Set<Coffee> coffee) {
-        this.coffee = coffee;
-    }
 
 }
