@@ -52,6 +52,11 @@ public class ApplicationUser {
     @Fetch(FetchMode.JOIN)
     private Set<Coffee> coffee;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    @Fetch(FetchMode.JOIN)
+    private Set<Lunch> lunch;
+
     public Long getId() {
         return id;
     }
@@ -122,6 +127,14 @@ public class ApplicationUser {
 
     public void setCoffee(Set<Coffee> coffee) {
         this.coffee = coffee;
+    }
+
+    public Set<Lunch> getLunch() {
+        return lunch;
+    }
+
+    public void setLunch(Set<Lunch> lunch) {
+        this.lunch = lunch;
     }
 
 
