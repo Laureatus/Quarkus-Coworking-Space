@@ -2,6 +2,7 @@ package ch.zli.m223.controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -29,6 +30,7 @@ public class ApplicationUserController {
     AuthService authService;
 
     @GET
+    @RolesAllowed({ "Admin" })
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
         summary = "Index all users.", 
@@ -39,6 +41,7 @@ public class ApplicationUserController {
     }
 
     @POST
+    @RolesAllowed({ "Admin" })
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public ApplicationUser createUser(ApplicationUser applicationUser) {
@@ -48,12 +51,13 @@ public class ApplicationUserController {
 
     @POST
     @Path("/login")
+    @RolesAllowed({ "User", "Admin" })
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String login(ApplicationUser user) {
        ApplicationUser foundUser = applicationUserService.findAll().stream().filter(dbuser->dbuser.getEmail().equals(user.getEmail()) && dbuser.getPassword().equals(user.getPassword())).findAny().orElse(null);
        if (foundUser != null) {
-        return authService.generateToken();
+        return authService.generateToken(foundUser);
        }
         return "";
     }
