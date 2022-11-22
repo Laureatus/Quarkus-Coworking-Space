@@ -19,6 +19,7 @@ public class AuthService {
              .upn("jdoe@quarkus.io") 
              .groups("Admin") 
              .claim(Claims.birthdate.name(), "2001-07-13") 
+             .expiresIn(86400)
            .sign();
            return token;
       }
@@ -28,6 +29,7 @@ public class AuthService {
              .upn("jdoe@quarkus.io") 
              .groups("User") 
              .claim(Claims.birthdate.name(), "2001-07-13") 
+             .expiresIn(86400)
            .sign();
            return token;
       }
