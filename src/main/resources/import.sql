@@ -10,6 +10,10 @@ INSERT INTO public.booking(
 	id, bookeddate, halfday, wholeday, user_id)
 	VALUES (1, '2019-01-21T05:47:08.644', true, false, 1);
 
+INSERT INTO public.booking(
+	id, bookeddate, halfday, wholeday, user_id)
+	VALUES (2, '2019-01-21T05:47:08.644', false, true, 2);
+
 INSERT INTO public.coffee(
 	id, "time", user_id)
 	VALUES (1, '2019-01-21T05:47:08.644', 1);
