@@ -2,6 +2,8 @@
 
 The Application is supposed to be a simple backend for a coworking space and provide simple functionalities for diffrent tasks using REST.
 
+## Repository URL
+https://github.com/Laureatus/UeK-223_22-3216_LFa
 
 ## Running the application in dev mode
 
