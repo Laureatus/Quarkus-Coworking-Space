@@ -24,7 +24,8 @@ public class MaterialService {
 
     @Transactional
     public Material createMaterial(Material material) {
-        return entityManager.merge(material);
+        entityManager.persist(material);
+        return material;
     }
 
     @Transactional
