@@ -22,5 +22,13 @@ public class GetBookingsTest {
         given()
           .when().header("Authorization", "Bearer "+ Usertoken).get("/booking").then().statusCode(200);
     }
+
+    @Test
+    public void testGetBookingsAsVisitor() {
+       
+        var Usertoken = "";
+        given()
+          .when().header("Authorization", "Bearer "+ Usertoken).get("/booking").then().statusCode(401);
+    }
     
 }
